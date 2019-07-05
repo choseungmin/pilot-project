@@ -8,6 +8,7 @@
     </ul>
 <!--    <test v-bind:my-message="msg" @click="testClick('sssss')"/>-->
     <a @click="testClick('sssss')">test call Api</a>
+    <a @click="getUserBas('sssss')">get user_bas</a>
   </div>
 </template>
 
@@ -26,7 +27,13 @@ export default {
       axios.post('/api/test', {param: 'this is test String'}).then(response => {
         console.log(response)
       })
-    }
+    },
+    getUserBas: (msg) => {
+      console.log('testClick' + msg)
+      axios.post('/api/selectUserBas', {param: 'this is test String'}).then(response => {
+        console.log(response)
+      })
+    },
   },
   components: {
     test
