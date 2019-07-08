@@ -3,7 +3,11 @@
 
 <mapper namespace="com.pilot.project.mapper.RestMapper">
     <select id="getUserBas" resultType="Map">
-        SELECT * FROM ems.user_bas
+        SELECT
+            ismart_id AS "ismartId",
+            user_nm AS "userNm",
+            user_type AS "userType"
+        FROM ems.user_bas
     </select>
 
 </mapper>
