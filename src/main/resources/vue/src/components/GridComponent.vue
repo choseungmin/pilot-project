@@ -33,37 +33,41 @@
       </table>
     </div>
 <!--    <test v-bind:my-message="msg" @click="testClick('sssss')"/>-->
+    <chart v-bind:chart-data="chartData"/>
   </div>
 </template>
 
 <script>
-import test from './test'
 import axios from 'axios'
+
+import chart from './ChartComponent'
+import test from './test'
 
 export default {
   name: 'GridComponent',
   data: () => ({
     msg: 'Grid Component Page',
-    userBasArr: []
+    userBasArr: [],
+    chartData: [10, 0, 8, 2, 6, 4, 5, 5]
   }),
   computed: {
 
   },
-  mounted: function () {
+  mounted () {
     this.getUserBas()
   },
   methods: {
-    getUserBas: function () {
+    getUserBas () {
       //
       axios.post('/api/selectUserBas', {param: 'this is test String'}).then(response => {
         this.userBasArr = response.data
       })
     },
-    clearUserBas: function () {
+    clearUserBas () {
       //
       this.userBasArr = []
     },
-    setUserTypeNm: function (userType) {
+    setUserTypeNm (userType) {
       switch (userType) {
         case '2001':
           return '관리자'
@@ -75,7 +79,8 @@ export default {
     }
   },
   components: {
-    test
+    test,
+    chart
   }
 }
 </script>
