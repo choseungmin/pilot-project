@@ -54,12 +54,12 @@ export default {
     this.getUserBas()
   },
   methods: {
-    getUserBas () {
+    getUserBas () { // table api
       axios.post('/api/getUserBas', {param: 'this is test String'}).then(response => {
         this.userBasArr = response.data
       })
     },
-    getOptCpower (ismartId) {
+    getOptCpower (ismartId) { // chart api
       this.ismartId = ismartId
       axios.post('/api/getOptCpower', {ismartId: ismartId}).then(response => {
         this.optCpowerArr = response.data

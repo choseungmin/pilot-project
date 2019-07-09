@@ -1,7 +1,7 @@
 <template>
   <div class="Index">
     <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
+    <h2>Page Link</h2>
     <ul>
       <li>
         <router-link to="/GridComponent">Grid Component</router-link>

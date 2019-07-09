@@ -1,6 +1,7 @@
 <template>
   <div>
     <h2>{{ msg }}</h2>
+    <h3>{{ ismartId }}</h3>
     <highcharts ref="lineChart" :options="optCpowerChartArr"></highcharts>
   </div>
 </template>
@@ -13,33 +14,34 @@ export default {
     optCpowerChartArr () {
       if (this.optCpowerArr.length < 1) return this.chartOptions
 
-      let returnObj = {category: [], series: []}
-      let tmpObj = {}
-      let keysArr = []
+      let categories = [] // highchart에 사용될 categories (여기서는 tgtMonth를 사용)
+      let series = [] // highchart에 사용될 series
+      let tmpObj = {} // series 값을 담을 임시 Object
+      let keysArr = [] // series 이름을 담을 임시 array
 
       this.optCpowerArr.map((v, i) => {
-        keysArr = Object.keys(v)
+        keysArr = Object.keys(v) // highchart에 사용 할 배열 이름 얻기 (series, categories)
 
         keysArr.map((w, j) => {
           if (w === 'tgtMonth') {
-            returnObj.category.push(v[w])
-          } else if (tmpObj[w] === undefined) {
-            tmpObj[w] = []
+            categories.push(v[w]) // tgtMonth를 categories로 사용
           } else {
-            tmpObj[w].push(v[w])
+            if (tmpObj[w] === undefined) {
+              tmpObj[w] = [] // 선언되지 않은 series를 담을 배열 생성
+            }
+            tmpObj[w].push(v[w]) // 선언된 series 배열에 값 담음
           }
         })
       })
 
-      returnObj.series = Object.keys(tmpObj).map((v, i) => {
+      series = Object.keys(tmpObj).map((v, i) => {
         return { name: v, data: tmpObj[v] }
       })
 
       return {
         ...this.chartOptions,
-        title: { text: '' },
-        xAxis: { categories: returnObj.category },
-        series: returnObj.series
+        xAxis: { categories: categories },
+        series: series
       }
     }
   },
@@ -59,7 +61,7 @@ export default {
 </script>
 
 <style scoped>
-  h1, h2 {
+  h1, h2, h3 {
     font-weight: normal;
   }
 </style>

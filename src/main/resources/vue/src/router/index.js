@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import HelloWorld from '@/components/helloWorld/HelloWorld'
 import Index from '@/components/Index'
-import GridComponent from '@/components/GridComponent'
+import GridComponent from '@/components/analysis/GridComponent'
 
 Vue.use(Router)
 
