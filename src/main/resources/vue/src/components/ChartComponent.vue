@@ -1,48 +1,65 @@
 <template>
   <div>
-    <highcharts ref="lineChart" :options="chartOptions"></highcharts>
-    <a @click="load()">aa</a>
+    <h2>{{ msg }}</h2>
+    <highcharts ref="lineChart" :options="optCpowerChartArr"></highcharts>
   </div>
-
-<!--  <input type="button" @click="load()">-->
 </template>
 
 <script>
 export default {
   name: 'ChartComponent',
-  props: ['chartData'],
-  mounted () {
-    // setTimeout(() => {
-    //   this.load()
-    // }, 2000)
-  },
-  methods: {
-    load () {
-      let lineChart = this.$refs.lineChart
-      setTimeout(() => {
-        lineChart.options.series = [{
-          data: [10, 0, 8, 2, 6, 4, 5, 5]
-        }]
+  props: ['chartData', 'optCpowerArr', 'ismartId'],
+  computed: {
+    optCpowerChartArr () {
+      if (this.optCpowerArr.length < 1) return this.chartOptions
+
+      let returnObj = {category: [], series: []}
+      let tmpObj = {}
+      let keysArr = []
+
+      this.optCpowerArr.map((v, i) => {
+        keysArr = Object.keys(v)
+
+        keysArr.map((w, j) => {
+          if (w === 'tgtMonth') {
+            returnObj.category.push(v[w])
+          } else if (tmpObj[w] === undefined) {
+            tmpObj[w] = []
+          } else {
+            tmpObj[w].push(v[w])
+          }
+        })
       })
+
+      returnObj.series = Object.keys(tmpObj).map((v, i) => {
+        return { name: v, data: tmpObj[v] }
+      })
+
+      return {
+        ...this.chartOptions,
+        title: { text: '' },
+        xAxis: { categories: returnObj.category },
+        series: returnObj.series
+      }
     }
   },
+  mounted () {
+  },
+  methods: {
+  },
   data: () => ({
-    msg: 'Grid Component Page',
+    msg: 'Chart Component Page',
     chartOptions: {
-      chart: {
-        type: 'spline'
-      },
-      title: {
-        text: 'Entire title'
-      },
-      series: [{
-        data: []
-      }]
+      chart: { type: 'spline' },
+      title: { text: '' },
+      series: []
     }
   })
 }
 </script>
 
 <style scoped>
-
+  h1, h2 {
+    font-weight: normal;
+  }
 </style>

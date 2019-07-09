@@ -1,7 +1,6 @@
 <template>
   <div class="GridComponent">
-    <h1>{{ msg }}</h1>
-    <h2>API Test</h2>
+    <h2>{{ msg }}</h2>
     <ul>
       <li><a @click="getUserBas()">get user_bas</a></li>
       <li><a @click="clearUserBas()">clear user_bas</a></li>
@@ -23,7 +22,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(item, key) in this.userBasArr" v-bind:key="key">
+          <tr v-for="(item, key) in this.userBasArr" v-bind:key="key" @click="getOptCpower(item.ismartId)">
             <td>{{ key }}</td>
             <td>{{ item.ismartId }}</td>
             <td>{{ item.userNm }}</td>
@@ -32,39 +31,41 @@
         </tbody>
       </table>
     </div>
-<!--    <test v-bind:my-message="msg" @click="testClick('sssss')"/>-->
-    <chart v-bind:chart-data="chartData"/>
+    <chartComponent :chart-data="chartData" :opt-cpower-arr="optCpowerArr" :ismart-id="ismartId"/>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
-
-import chart from './ChartComponent'
-import test from './test'
+import chartComponent from './ChartComponent'
 
 export default {
   name: 'GridComponent',
   data: () => ({
     msg: 'Grid Component Page',
     userBasArr: [],
+    ismartId: '',
+    optCpowerArr: [],
     chartData: [10, 0, 8, 2, 6, 4, 5, 5]
   }),
   computed: {
-
   },
   mounted () {
     this.getUserBas()
   },
   methods: {
     getUserBas () {
-      //
-      axios.post('/api/selectUserBas', {param: 'this is test String'}).then(response => {
+      axios.post('/api/getUserBas', {param: 'this is test String'}).then(response => {
         this.userBasArr = response.data
       })
     },
+    getOptCpower (ismartId) {
+      this.ismartId = ismartId
+      axios.post('/api/getOptCpower', {ismartId: ismartId}).then(response => {
+        this.optCpowerArr = response.data
+      })
+    },
     clearUserBas () {
-      //
       this.userBasArr = []
     },
     setUserTypeNm (userType) {
@@ -79,8 +80,7 @@ export default {
     }
   },
   components: {
-    test,
-    chart
+    chartComponent
   }
 }
 </script>

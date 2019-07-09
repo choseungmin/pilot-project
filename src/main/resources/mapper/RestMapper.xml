@@ -10,4 +10,16 @@
         FROM ems.user_bas
     </select>
 
+    <select id="getOptCpower" parameterType="Map" resultType="Map">
+        SELECT
+               tgt_month AS "tgtMonth",
+               max_power AS "maxPower",
+               opt_power AS "optPower",
+               delta_power AS "deltaPower"
+        FROM ems.opt_peak
+        WHERE cust_no = #{ismartId}
+        AND anals_date = (SELECT MAX(anals_date) FROM ems.opt_peak WHERE cust_no = '1126464430')
+        ORDER BY tgt_month::NUMERIC asc
+    </select>
+
 </mapper>

@@ -21,14 +21,18 @@ public class RestController {
     @Resource(name="com.pilot.project.service.RestServiceImpl")
     private RestService service;
 
-    @PostMapping("/selectUserBas")
-    public List<Map<String,Object>> selectUserBas(@RequestBody Map<String,Object> req) {
+    @PostMapping("/getUserBas")
+    public List<Map<String,Object>> getUserBas(@RequestBody Map<String,Object> param) {
         return service.getUserBas();
+    }
+
+    @PostMapping("/getOptCpower")
+    public List<Map<String,Object>> getOptCpower(@RequestBody Map<String,Object> param) {
+        return service.getOptCpower(param);
     }
 
     @PostMapping("/test")
     public String test(@RequestBody Map<String,Object> req) {
-//        log.info(">>>>>>>>>>");
         String reqString = req.get("param").toString();
         return "Test Success, param Text is " + reqString;
     }

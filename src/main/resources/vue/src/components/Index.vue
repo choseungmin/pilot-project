@@ -4,10 +4,10 @@
     <h2>Essential Links</h2>
     <ul>
       <li>
-        <a href="/GridComponent" target="_blank">GridComponent</a>
+        <router-link to="/GridComponent">Grid Component</router-link>
       </li>
       <li>
-        <router-link to="/GridComponent">Grid Component</router-link>
+        <router-link to="/helloWorld">hello world</router-link>
       </li>
     </ul>
   </div>
