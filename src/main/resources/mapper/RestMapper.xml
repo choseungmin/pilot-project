@@ -18,7 +18,7 @@
                delta_power AS "deltaPower"
         FROM ems.opt_peak
         WHERE cust_no = #{ismartId}
-        AND anals_date = (SELECT MAX(anals_date) FROM ems.opt_peak WHERE cust_no = '1126464430')
+        AND anals_date = (SELECT MAX(anals_date) FROM ems.opt_peak WHERE cust_no = #{ismartId})
         ORDER BY tgt_month::NUMERIC asc
     </select>
 
