@@ -21,5 +21,4 @@
         AND anals_date = (SELECT MAX(anals_date) FROM ems.opt_peak WHERE cust_no = #{ismartId})
         ORDER BY tgt_month::NUMERIC asc
     </select>
-
 </mapper>
