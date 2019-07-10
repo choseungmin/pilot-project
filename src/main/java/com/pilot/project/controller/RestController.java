@@ -26,14 +26,8 @@ public class RestController {
         return service.getUserBas();
     }
 
-    @PostMapping("/getOptCpower")
-    public List<Map<String,Object>> getOptCpower(@RequestBody Map<String,Object> param) {
-        return service.getOptCpower(param);
-    }
-
-    @PostMapping("/test")
-    public String test(@RequestBody Map<String,Object> req) {
-        String reqString = req.get("param").toString();
-        return "Test Success, param Text is " + reqString;
+    @PostMapping("/getOptPeak")
+    public List<Map<String,Object>> getOptPeak(@RequestBody Map<String,Object> param) {
+        return service.getOptPeak(param);
     }
 }

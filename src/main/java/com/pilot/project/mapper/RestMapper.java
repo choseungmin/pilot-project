@@ -8,5 +8,5 @@ import java.util.Map;
 @Mapper
 public interface RestMapper {
     public ArrayList<Map<String,Object>> getUserBas();
-    public ArrayList<Map<String,Object>> getOptCpower(Map<String,Object> param);
+    public ArrayList<Map<String,Object>> getOptPeak(Map<String,Object> param);
 }

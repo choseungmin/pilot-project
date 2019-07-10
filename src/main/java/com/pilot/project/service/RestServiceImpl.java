@@ -18,7 +18,8 @@ public class RestServiceImpl implements RestService {
         return mapper.getUserBas();
     }
 
-    public ArrayList<Map<String, Object>> getOptCpower(Map<String,Object> param) {
-        return mapper.getOptCpower(param);
+    @Override
+    public ArrayList<Map<String, Object>> getOptPeak(Map<String,Object> param) {
+        return mapper.getOptPeak(param);
     }
 }

@@ -22,7 +22,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(item, key) in this.userBasArr" v-bind:key="key" @click="getOptCpower(item.ismartId)">
+          <tr v-for="(item, key) in this.userBasArr" v-bind:key="key" @click="getOptPeak(item.ismartId)">
             <td>{{ key }}</td>
             <td>{{ item.ismartId }}</td>
             <td>{{ item.userNm }}</td>
@@ -31,7 +31,7 @@
         </tbody>
       </table>
     </div>
-    <chartComponent :chart-data="chartData" :opt-cpower-arr="optCpowerArr" :ismart-id="ismartId"/>
+    <chartComponent :chart-data="chartData" :opt-peak-arr="optPeakArr" :ismart-id="ismartId"/>
   </div>
 </template>
 
@@ -45,7 +45,7 @@ export default {
     msg: 'Grid Component Page',
     userBasArr: [],
     ismartId: '',
-    optCpowerArr: [],
+    optPeakArr: [],
     chartData: [10, 0, 8, 2, 6, 4, 5, 5]
   }),
   computed: {
@@ -59,10 +59,10 @@ export default {
         this.userBasArr = response.data
       })
     },
-    getOptCpower (ismartId) { // chart api
+    getOptPeak (ismartId) { // chart api
       this.ismartId = ismartId
-      axios.post('/api/getOptCpower', {ismartId: ismartId}).then(response => {
-        this.optCpowerArr = response.data
+      axios.post('/api/getOptPeak', {ismartId: ismartId}).then(response => {
+        this.optPeakArr = response.data
       })
     },
     clearUserBas () {

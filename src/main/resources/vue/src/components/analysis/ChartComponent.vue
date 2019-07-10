@@ -2,24 +2,24 @@
   <div>
     <h2>{{ msg }}</h2>
     <h3>{{ ismartId }}</h3>
-    <highcharts ref="lineChart" :options="optCpowerChartArr"></highcharts>
+    <highcharts ref="lineChart" :options="optPeakChartArr"></highcharts>
   </div>
 </template>
 
 <script>
 export default {
   name: 'ChartComponent',
-  props: ['chartData', 'optCpowerArr', 'ismartId'],
+  props: ['chartData', 'optPeakArr', 'ismartId'],
   computed: {
-    optCpowerChartArr () {
-      if (this.optCpowerArr.length < 1) return this.chartOptions
+    optPeakChartArr () {
+      if (this.optPeakArr.length < 1) return this.chartOptions
 
       let categories = [] // highchart에 사용될 categories (여기서는 tgtMonth를 사용)
       let series = [] // highchart에 사용될 series
       let tmpObj = {} // series 값을 담을 임시 Object
       let keysArr = [] // series 이름을 담을 임시 array
 
-      this.optCpowerArr.map((v, i) => {
+      this.optPeakArr.map((v, i) => {
         keysArr = Object.keys(v) // highchart에 사용 할 배열 이름 얻기 (series, categories)
 
         keysArr.map((w, j) => {

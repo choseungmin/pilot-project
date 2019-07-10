@@ -10,7 +10,7 @@
         FROM ems.user_bas
     </select>
 
-    <select id="getOptCpower" parameterType="Map" resultType="Map">
+    <select id="getOptPeak" parameterType="Map" resultType="Map">
         SELECT
                tgt_month AS "tgtMonth",
                max_power AS "maxPower",
