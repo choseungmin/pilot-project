@@ -4,7 +4,7 @@
     <h2>Page Link</h2>
     <ul>
       <li>
-        <router-link to="/GridComponent">Grid Component</router-link>
+        <router-link to="/gridComponent">Grid Component</router-link>
       </li>
       <li>
         <router-link to="/helloWorld">hello world</router-link>

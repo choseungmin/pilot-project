@@ -1,12 +1,13 @@
 import Vue from 'vue'
-import Router from 'vue-router'
+import VueRouter from 'vue-router'
 import HelloWorld from '@/components/helloWorld/HelloWorld'
 import Index from '@/components/Index'
 import GridComponent from '@/components/analysis/GridComponent'
 
-Vue.use(Router)
+Vue.use(VueRouter)
 
-export default new Router({
+export default new VueRouter({
+  // mode: 'history',
   routes: [
     {
       path: '/',
@@ -14,7 +15,7 @@ export default new Router({
       component: Index
     },
     {
-      path: '/GridComponent',
+      path: '/gridComponent',
       name: 'GridComponent',
       component: GridComponent
     },
